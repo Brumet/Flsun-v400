@@ -9,8 +9,21 @@ recordar nada.
 
 - [ ] Portátil con Linux
 - [ ] **Cable de red Ethernet** (el elemento clave)
-- [ ] Este repositorio clonado: `git clone https://github.com/Brumet/Flsun-v400.git`
 - [ ] Una microSD en FAT32 — **solo si vas a reflashear el firmware**
+- [ ] **Portátil preparado y verificado**, con esto:
+
+```bash
+git clone https://github.com/Brumet/Flsun-v400.git
+bash Flsun-v400/scripts/preparar-portatil.sh
+```
+
+Instala las dependencias (`git`, `ssh`, `scp`, `curl`, `python3`) y `paramiko`,
+deja el repositorio al día, pone permisos de ejecución y verifica que no falte
+nada. Termina con un resumen: si dice **«Todo listo»**, el portátil puede ir a
+la mochila. Con `--verificar` solo comprueba, sin instalar ni tocar nada.
+
+> Hazlo **en casa, con WiFi**. En casa del cliente puede que no haya internet
+> para el portátil, y ahí ya es tarde para descubrir que falta un paquete.
 
 ---
 
@@ -131,14 +144,28 @@ geométricos (z-offset, delta, malla) **hay que volver a medirlos**.
 
 ## Si quieres que te ayude estando allí
 
-Abre **Claude Code en el portátil**, no en el PC de casa. Yo trabajo desde la
-máquina donde nace la sesión: si el portátil está en la misma red que el pad,
-puedo entrar por SSH y hacerlo todo. Desde otra casa, no hay forma de alcanzarlo.
+Abre **Claude Code en el portátil que llevas**, y ábrelo **en local, desde su
+terminal**. Este punto no es un detalle: decide si puedo ayudarte o no.
 
-Para que funcione igual que en la sesión original hace falta:
+| Dónde abres la sesión | ¿Alcanza el pad? |
+|---|---|
+| Terminal del portátil que está delante de la máquina | **Sí** |
+| Claude Code en la web o en el móvil | **No** |
+| Terminal del PC de casa, estando tú en casa del cliente | **No** |
+
+Una sesión abierta desde la web **no corre en tu portátil**: corre en un
+contenedor de Anthropic, con su propia red. Desde ahí no veo tu red local, ni
+`192.168.x.x`, ni el pad — no importa que me pases la IP, no hay ruta hasta ella.
+Solo llego a la máquina donde se ejecuta la sesión.
+
+Así que la regla es: **la sesión tiene que nacer en el portátil que tiene el
+cable puesto**. Si `preparar-portatil.sh` terminó con «Todo listo», ya tiene
+`paramiko` y no hay nada más que instalar.
+
+Para confirmar antes de empezar que ese portátil alcanza el pad:
 
 ```bash
-python3 -m pip install paramiko
+bash scripts/preparar-portatil.sh --verificar --pad speeder-pad.local
 ```
 
 ---

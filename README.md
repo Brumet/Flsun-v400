@@ -11,6 +11,15 @@ Si vas a ir donde está la máquina con un portátil, sigue
 **[`docs/RUNBOOK-EN-SITIO.md`](docs/RUNBOOK-EN-SITIO.md)**: qué meter en la
 mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
 
+Antes de salir de casa, con WiFi todavía:
+
+```bash
+bash scripts/preparar-portatil.sh
+```
+
+Deja el portátil listo —dependencias, `paramiko`, repositorio al día, permisos—
+y verifica que no falte nada. `--verificar` comprueba sin tocar nada.
+
 ---
 
 ## Contenido
@@ -19,7 +28,7 @@ mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
 |---|---|
 | `config-pad/` | Ficheros de configuración del pad (Klipper, Moonraker, KlipperScreen, macros) |
 | `temas/` | Dos temas propios para KlipperScreen, oscuro y claro |
-| `scripts/` | Utilidad para conectar el pad a una red WiFi nueva |
+| `scripts/` | Preparar el portátil antes de salir, y conectar el pad a una red WiFi nueva |
 | `docs/` | Instrucciones de red y gráficas de resonancia |
 | `Klipper-Flsun-Speeder-Pad-main/` | Copia del repositorio de Guilouz |
 | `speeder_pad_files/` | Ficheros de sistema del pad (sshd, banner, MOTD) |
