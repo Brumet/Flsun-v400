@@ -5,6 +5,14 @@ las builds oficiales de Klipper según la [wiki de Guilouz](https://github.com/G
 
 ---
 
+## Trabajo en sitio
+
+Si vas a ir donde está la máquina con un portátil, sigue
+**[`docs/RUNBOOK-EN-SITIO.md`](docs/RUNBOOK-EN-SITIO.md)**: qué meter en la
+mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
+
+---
+
 ## Contenido
 
 | Carpeta | Qué hay |
