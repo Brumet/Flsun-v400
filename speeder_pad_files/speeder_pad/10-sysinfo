@@ -1,0 +1,48 @@
+#!/bin/bash
+
+. /etc/update-motd.d/colors
+
+load=`cat /proc/loadavg | awk {'print $1 " (1 min.) / " $2 " (5 min.) / " $3 " (15 min.)"'}`
+memfree=`cat /proc/meminfo | grep MemFree | awk {'print $2'}`
+memtotal=`cat /proc/meminfo | grep MemTotal | awk {'print $2'}`
+pourcent=$((($memfree * 100)/$memtotal))
+diskused=`df -h | grep /dev/root | awk {'print $3 " / " $2 " (" $4 " available)" '}`
+process=`ps ax | wc -l | tr -d " "`
+uptime=`cat /proc/uptime | cut -f1 -d.`
+upDays=$((uptime/60/60/24))
+upHours=$((uptime/60/60%24))
+upMins=$((uptime/60%60))
+addrip=`hostname -I | cut -d " " -f1`
+
+printf ""$LIGHT_GREEN
+printf "  System Load: "
+printf ""$WHITE
+printf "$load"
+printf "\n"
+printf ""$LIGHT_GREEN
+printf "  RAM Usage: "
+printf ""$WHITE
+printf "  $(($memfree/1024)) MB / $(($memtotal/1024)) MB ($pourcent%% available)"
+printf "\n"
+printf ""$LIGHT_GREEN
+printf "  Disk Usage: "
+printf ""$WHITE
+printf " $diskused"
+printf "\n"
+printf ""$LIGHT_GREEN
+printf "  Processes: "
+printf ""$WHITE
+printf "  $process running process"
+printf "\n"
+printf ""$LIGHT_GREEN
+printf "  Uptime: "
+printf ""$WHITE
+printf "     $upDays days $upHours hours $upMins minutes"
+printf "\n"
+printf ""$LIGHT_GREEN
+printf "  IP Adress: "
+printf ""$WHITE
+printf "  $addrip"
+printf ""$NONE
+printf "\n"
+printf "\n"

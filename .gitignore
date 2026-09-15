@@ -1,0 +1,24 @@
+# === Archivos demasiado grandes para GitHub (limite 100 MB por archivo) ======
+# La imagen de restauracion del Speeder Pad ocupa 15 GB descomprimida y 1,4 GB
+# comprimida. Se descarga desde la wiki de Guilouz:
+#   https://github.com/Guilouz/Klipper-Flsun-Speeder-Pad/wiki/Restore-OS-Image-File
+Speeder_Pad_V1.2_Restoration-230303.xz/
+Speeder_Pad_V1.2_Restoration-230303.xz.7z
+*.img
+*.xz
+
+# === Software de terceros (se descarga de su web oficial) ====================
+# MobaXterm  -> https://mobaxterm.mobatek.net/download-home-edition.html
+# RPi Imager -> https://www.raspberrypi.com/software/
+MobaXterm_Portable_v24.0/
+imager_*.exe
+
+# === Configuracion local de herramientas (contiene la IP interna del pad) ====
+.claude/
+
+# === Basura habitual =========================================================
+Thumbs.db
+desktop.ini
+.DS_Store
+__pycache__/
+*.pyc

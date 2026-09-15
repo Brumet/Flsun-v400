@@ -1,0 +1,16 @@
+network:
+  version: 2
+  wifis:
+    wlan0:
+      dhcp4: no
+      dhcp6: no
+      addresses:
+        - 192.168.1.100/24  # Reemplaza con la IP deseada para tu Speeder Pad
+      gateway4: 192.168.1.1  # Puerta de enlace de tu red
+      nameservers:
+        addresses:
+          - 200.21.200.80
+          - 200.21.200.10  # Servidores DNS
+      access-points:
+        "BrumetyMeu":
+          password: "1001042945"

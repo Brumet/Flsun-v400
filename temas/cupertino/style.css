@@ -1,0 +1,329 @@
+/* ============================================================
+   Cupertino  -  tema limpio y elegante para KlipperScreen
+   FLSUN V400 / Speeder Pad  (1024x600)
+   Paleta basada en los colores de sistema de iOS (modo oscuro)
+   ============================================================ */
+
+/* --- Acentos: azul, morado, verde, naranja --- */
+@define-color color1 #0A84FF;
+@define-color color2 #BF5AF2;
+@define-color color3 #30D158;
+@define-color color4 #FF9F0A;
+
+/* --- Fondo y superficies --- */
+@define-color bg              #0F0F13;
+@define-color surface         rgba(255,255,255,0.07);
+@define-color surface-strong  rgba(255,255,255,0.13);
+@define-color bg-trans0       rgba(0,0,0,0);
+@define-color bg-trans1       rgba(255,255,255,0.04);
+@define-color bg-trans7       rgba(20,20,24,0.94);
+@define-color bg-trans25      rgba(255,255,255,0.07);
+@define-color bg-slider       rgba(255,255,255,0.16);
+
+/* --- Estado --- */
+@define-color active          #0A84FF;
+@define-color echo            #30D158;
+@define-color error           #FF453A;
+@define-color warning         #FF9F0A;
+@define-color warning-text    #1C1C1E;
+@define-color dialog-error    #FF453A;
+@define-color dialog-warning  #FF9F0A;
+@define-color dialog-info     #30D158;
+
+/* --- Texto y separadores --- */
+@define-color text        #FFFFFF;
+@define-color text-dim    rgba(255,255,255,0.55);
+@define-color text-inv    #000000;
+@define-color lines       rgba(255,255,255,0.14);
+
+/* ---------- Tipografia ---------- */
+* {
+    color: @text;
+    font-family: "Ubuntu", "DejaVu Sans", sans-serif;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* ---------- Fondo: degradado sutil, sin imagen ---------- */
+window {
+    background-color: @bg;
+    background-image: linear-gradient(180deg, #15151B 0%, #0D0D11 100%);
+}
+
+junction,
+list row,
+treeview.view {
+    background-color: @bg;
+}
+
+/* ---------- Botones ---------- */
+button {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+    margin: .25em;
+    padding: 0.35em;
+}
+
+button:active,
+.button_active,
+button.active {
+    background-color: @active;
+    border-color: @active;
+    border-radius: 0.7em;
+}
+
+button:disabled {
+    background-color: rgba(255,255,255,0.03);
+    border-color: rgba(255,255,255,0.07);
+}
+
+/* Botones de categoria: franja de acento fina en lugar de barra gruesa */
+button.color1,
+button.color2,
+button.color3,
+button.color4 {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+    padding: 0.4em;
+}
+
+button.color1 { border-bottom: 0.18em solid @color1; }
+button.color2 { border-bottom: 0.18em solid @color2; }
+button.color3 { border-bottom: 0.18em solid @color3; }
+button.color4 { border-bottom: 0.18em solid @color4; }
+
+button.color1:active { background-color: @color1; border-bottom-color: @color1; }
+button.color2:active { background-color: @color2; border-bottom-color: @color2; }
+button.color3:active { background-color: @color3; border-bottom-color: @color3; }
+button.color4:active { background-color: @color4; border-bottom-color: @color4; }
+
+button.color1:disabled,
+button.color2:disabled,
+button.color3:disabled,
+button.color4:disabled {
+    border-bottom: 0.18em solid rgba(255,255,255,0.15);
+}
+
+button.update {
+    background-color: @color3;
+    border: 1px solid @color3;
+    border-radius: 0.7em;
+}
+
+button.invalid {
+    background-color: @error;
+    border: 1px solid @error;
+    border-radius: 0.7em;
+}
+
+button.update:active,
+button.invalid:active {
+    background-color: @surface-strong;
+    border-color: @lines;
+}
+
+/* ---------- Interruptores y casillas ---------- */
+treeview.view check,
+switch {
+    background-color: @bg-slider;
+    border-radius: 3em;
+}
+
+treeview.view check:checked,
+switch:checked {
+    background-color: @echo;
+}
+
+/* ---------- Campos de texto ---------- */
+entry {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.6em;
+    padding: 0.3em 0.6em;
+    margin-right: 5;
+}
+
+entry:focus {
+    border-color: @active;
+}
+
+label {
+    color: @text;
+}
+
+/* ---------- Menus y desplegables ---------- */
+menu,
+popover {
+    background-color: @bg-trans7;
+    border: 1px solid @lines;
+    border-radius: 0.9em;
+}
+
+menuitem {
+    background-color: @bg-trans0;
+    border-radius: 0.5em;
+}
+
+menuitem:hover {
+    background-color: @surface-strong;
+}
+
+popover button {
+    background-color: @surface;
+    border-radius: 0.7em;
+    min-height: 4em;
+}
+
+combobox arrow {
+    background-color: @bg-trans0;
+}
+
+combobox box button {
+    border-color: @lines;
+    border-radius: 0.6em;
+}
+
+/* ---------- Barras de progreso y deslizadores ---------- */
+trough {
+    background-color: @bg-slider;
+    border: 0;
+    border-radius: 2em;
+    color: @text;
+}
+
+trough highlight,
+trough progress {
+    background-color: @active;
+    border-radius: 2em;
+    color: @text;
+}
+
+scale-mark {
+    color: @text-dim;
+}
+
+scrollbar,
+scrollbar button,
+scrollbar trough {
+    background-color: @bg-trans0;
+}
+
+scrollbar slider {
+    background-color: rgba(255,255,255,0.22);
+    border-radius: 2em;
+    min-width: 0.5em;
+}
+
+/* ---------- Dialogos ---------- */
+.dialog {
+    background-color: #16161C;
+    background-image: none;
+    border: 1px solid @lines;
+    border-radius: 1.1em;
+    padding: 2.5em;
+    margin: 1em;
+}
+
+.dialog button {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.8em;
+}
+
+.dialog button:active {
+    background-color: @active;
+    border-color: @active;
+}
+
+.dialog-error     { border-bottom: 0.25em solid @dialog-error; }
+.dialog-warning   { border-bottom: 0.25em solid @dialog-warning; }
+.dialog-info      { border-bottom: 0.25em solid @dialog-info; }
+.dialog-default   { border-bottom: 0.25em solid @color3; }
+.dialog-secondary { border-bottom: 0.25em solid @color2; }
+.dialog-primary   { border-bottom: 0.25em solid @color1; }
+
+/* ---------- Botones segmentados ---------- */
+.horizontal_togglebuttons {
+    border-color: @lines;
+    border-radius: 0.7em;
+}
+
+.horizontal_togglebuttons_active {
+    background-color: @active;
+    border-radius: 0.7em;
+}
+
+/* ---------- Barras superior e inferior ---------- */
+.title_bar {
+    background-color: rgba(255,255,255,0.03);
+}
+
+.frame-item {
+    border-radius: 0.7em;
+}
+
+/* ---------- Teclado numerico ---------- */
+.numpad {
+    margin-right: 3;
+}
+
+.numpad_tleft,
+.numpad_top,
+.numpad_tright,
+.numpad_left,
+.numpad_button,
+.numpad_right,
+.numpad_bleft,
+.numpad_bottom,
+.numpad_bright {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+}
+
+.numpad_key {
+    border-color: @lines;
+}
+
+.keyboard_pad {
+    background-color: @surface;
+    border-radius: 0.7em;
+}
+
+/* ---------- Mensajes emergentes ---------- */
+.message {
+    background-color: @error;
+    border-color: @error;
+    border-radius: 0.8em;
+    color: @text;
+}
+
+.message button {
+    background-color: @text;
+    color: @text-inv;
+}
+
+.message_popup {
+    border-bottom-color: @text;
+    border-radius: 0.8em;
+}
+
+.message_popup_echo    { background-color: @echo; }
+.message_popup_warning { background-color: @warning; }
+.message_popup_warning label { color: @warning-text; }
+.message_popup_error   { background-color: @error; }
+
+.popup {
+    background-color: @bg-trans7;
+    border-radius: 0.9em;
+}
+
+.fan_slider {
+    color: @text;
+}
+
+textview .time {
+    color: @text-dim;
+}

@@ -1,0 +1,380 @@
+/* ============================================================
+   Cupertino Light  -  tema claro para KlipperScreen
+   FLSUN V400 / Speeder Pad  (1024x600)
+
+   Criterio de rendimiento: SIN box-shadow y SIN degradados.
+   El pad renderiza por software; las sombras se recalculan en
+   cada redibujado (temperaturas, grafica, progreso) y cuestan
+   caro. La profundidad se consigue con superficies planas y
+   bordes de 1px, que son practicamente gratis.
+   ============================================================ */
+
+/* --- Acentos: paleta de sistema iOS en modo claro --- */
+@define-color color1 #007AFF;
+@define-color color2 #AF52DE;
+@define-color color3 #34C759;
+@define-color color4 #FF9500;
+
+/* --- Fondo y superficies --- */
+@define-color bg              #F2F2F7;
+@define-color surface         #FFFFFF;
+@define-color surface-strong  #E5E5EA;
+@define-color bg-trans0       rgba(0,0,0,0);
+@define-color bg-trans1       rgba(0,0,0,0.03);
+@define-color bg-trans7       #FFFFFF;
+@define-color bg-trans25      #FFFFFF;
+@define-color bg-slider       rgba(120,120,128,0.20);
+
+/* --- Estado --- */
+@define-color active          #007AFF;
+@define-color echo            #34C759;
+@define-color error           #FF3B30;
+@define-color warning         #FF9500;
+@define-color warning-text    #FFFFFF;
+@define-color dialog-error    #FF3B30;
+@define-color dialog-warning  #FF9500;
+@define-color dialog-info     #34C759;
+
+/* --- Texto y separadores --- */
+@define-color text        #1C1C1E;
+@define-color text-dim    rgba(60,60,67,0.60);
+@define-color text-inv    #FFFFFF;
+@define-color lines       rgba(60,60,67,0.18);
+
+/* ---------- Tipografia ---------- */
+* {
+    color: @text;
+    font-family: "Ubuntu", "DejaVu Sans", sans-serif;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+/* ---------- Fondo plano (sin degradado, por rendimiento) ---------- */
+window {
+    background-color: @bg;
+    background-image: none;
+}
+
+junction,
+list row,
+treeview.view {
+    background-color: @bg;
+}
+
+/* ---------- Botones ---------- */
+button {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+    margin: .25em;
+    padding: 0.35em;
+    color: @text;
+}
+
+button label {
+    color: @text;
+}
+
+button:active,
+.button_active,
+button.active {
+    background-color: @active;
+    border-color: @active;
+    border-radius: 0.7em;
+}
+
+button:active label,
+.button_active label,
+button.active label {
+    color: @text-inv;
+}
+
+button:disabled {
+    background-color: #EFEFF4;
+    border-color: rgba(60,60,67,0.10);
+}
+
+button:disabled label {
+    color: rgba(60,60,67,0.30);
+}
+
+/* Botones de categoria: franja de acento fina */
+button.color1,
+button.color2,
+button.color3,
+button.color4 {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+    padding: 0.4em;
+}
+
+button.color1 { border-bottom: 0.18em solid @color1; }
+button.color2 { border-bottom: 0.18em solid @color2; }
+button.color3 { border-bottom: 0.18em solid @color3; }
+button.color4 { border-bottom: 0.18em solid @color4; }
+
+button.color1:active { background-color: @color1; border-bottom-color: @color1; }
+button.color2:active { background-color: @color2; border-bottom-color: @color2; }
+button.color3:active { background-color: @color3; border-bottom-color: @color3; }
+button.color4:active { background-color: @color4; border-bottom-color: @color4; }
+
+button.color1:active label,
+button.color2:active label,
+button.color3:active label,
+button.color4:active label {
+    color: @text-inv;
+}
+
+button.color1:disabled,
+button.color2:disabled,
+button.color3:disabled,
+button.color4:disabled {
+    border-bottom: 0.18em solid rgba(60,60,67,0.15);
+}
+
+button.update {
+    background-color: @color3;
+    border: 1px solid @color3;
+    border-radius: 0.7em;
+}
+
+button.invalid {
+    background-color: @error;
+    border: 1px solid @error;
+    border-radius: 0.7em;
+}
+
+button.update label,
+button.invalid label {
+    color: @text-inv;
+}
+
+button.update:active,
+button.invalid:active {
+    background-color: @surface-strong;
+    border-color: @lines;
+}
+
+/* ---------- Interruptores y casillas ---------- */
+treeview.view check,
+switch {
+    background-color: @bg-slider;
+    border-radius: 3em;
+}
+
+treeview.view check:checked,
+switch:checked {
+    background-color: @echo;
+}
+
+/* ---------- Campos de texto ---------- */
+entry {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.6em;
+    padding: 0.3em 0.6em;
+    margin-right: 5;
+    color: @text;
+}
+
+entry:focus {
+    border-color: @active;
+}
+
+label {
+    color: @text;
+}
+
+/* ---------- Menus y desplegables ---------- */
+menu,
+popover {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.9em;
+}
+
+menuitem {
+    background-color: @bg-trans0;
+    border-radius: 0.5em;
+}
+
+menuitem:hover {
+    background-color: @surface-strong;
+}
+
+popover button {
+    background-color: @surface;
+    border-radius: 0.7em;
+    min-height: 4em;
+}
+
+combobox arrow {
+    background-color: @bg-trans0;
+}
+
+combobox box button {
+    border-color: @lines;
+    border-radius: 0.6em;
+}
+
+/* ---------- Barras de progreso y deslizadores ---------- */
+trough {
+    background-color: @bg-slider;
+    border: 0;
+    border-radius: 2em;
+    color: @text;
+}
+
+trough highlight,
+trough progress {
+    background-color: @active;
+    border-radius: 2em;
+}
+
+scale-mark {
+    color: @text-dim;
+}
+
+scrollbar,
+scrollbar button,
+scrollbar trough {
+    background-color: @bg-trans0;
+}
+
+scrollbar slider {
+    background-color: rgba(60,60,67,0.30);
+    border-radius: 2em;
+    min-width: 0.5em;
+}
+
+/* ---------- Grafica de temperaturas ---------- */
+.heatergraph {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+}
+
+/* ---------- Dialogos ---------- */
+.dialog {
+    background-color: @surface;
+    background-image: none;
+    border: 1px solid @lines;
+    border-radius: 1.1em;
+    padding: 2.5em;
+    margin: 1em;
+}
+
+.dialog button {
+    background-color: #F7F7FA;
+    border: 1px solid @lines;
+    border-radius: 0.8em;
+}
+
+.dialog button:active {
+    background-color: @active;
+    border-color: @active;
+}
+
+.dialog-error     { border-bottom: 0.25em solid @dialog-error; }
+.dialog-warning   { border-bottom: 0.25em solid @dialog-warning; }
+.dialog-info      { border-bottom: 0.25em solid @dialog-info; }
+.dialog-default   { border-bottom: 0.25em solid @color3; }
+.dialog-secondary { border-bottom: 0.25em solid @color2; }
+.dialog-primary   { border-bottom: 0.25em solid @color1; }
+
+/* ---------- Botones segmentados ---------- */
+.horizontal_togglebuttons {
+    border-color: @lines;
+    border-radius: 0.7em;
+}
+
+.horizontal_togglebuttons_active {
+    background-color: @active;
+    border-radius: 0.7em;
+}
+
+.horizontal_togglebuttons_active label {
+    color: @text-inv;
+}
+
+/* ---------- Barras superior e inferior ---------- */
+.title_bar {
+    background-color: @surface;
+}
+
+.frame-item {
+    border-radius: 0.7em;
+}
+
+/* ---------- Teclado numerico ---------- */
+.numpad {
+    margin-right: 3;
+}
+
+.numpad_tleft,
+.numpad_top,
+.numpad_tright,
+.numpad_left,
+.numpad_button,
+.numpad_right,
+.numpad_bleft,
+.numpad_bottom,
+.numpad_bright {
+    background-color: @surface;
+    border: 1px solid @lines;
+    border-radius: 0.7em;
+}
+
+.numpad_key {
+    border-color: @lines;
+}
+
+.keyboard_pad {
+    background-color: @surface;
+    border-radius: 0.7em;
+}
+
+/* ---------- Mensajes emergentes ---------- */
+.message {
+    background-color: @error;
+    border-color: @error;
+    border-radius: 0.8em;
+}
+
+.message label {
+    color: @text-inv;
+}
+
+.message button {
+    background-color: @surface;
+    color: @text;
+}
+
+.message_popup {
+    border-bottom-color: @lines;
+    border-radius: 0.8em;
+}
+
+.message_popup_echo    { background-color: @echo; }
+.message_popup_warning { background-color: @warning; }
+.message_popup_error   { background-color: @error; }
+
+.message_popup_echo label,
+.message_popup_warning label,
+.message_popup_error label {
+    color: @text-inv;
+}
+
+.popup {
+    background-color: @surface;
+    border-radius: 0.9em;
+}
+
+.fan_slider {
+    color: @text;
+}
+
+textview .time {
+    color: @text-dim;
+}
