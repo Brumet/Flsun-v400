@@ -5,6 +5,29 @@ las builds oficiales de Klipper según la [wiki de Guilouz](https://github.com/G
 
 ---
 
+## Montar otra V400 desde cero
+
+Restaura la imagen V1.2, conecta el WiFi desde la pantalla y lanza:
+
+```bash
+git clone https://github.com/Brumet/Flsun-v400.git
+sudo bash Flsun-v400/scripts/provision.sh
+```
+
+En 60‑90 minutos queda operativa: Klipper oficial en una instancia, Moonraker,
+Mainsail, KlipperScreen de Guilouz con los temas propios y las configuraciones
+calibradas. Solo hay que calibrar lo geométrico después.
+
+Guía completa: **[`docs/CLONAR-OTRA-V400.md`](docs/CLONAR-OTRA-V400.md)**
+
+> **Antes de tocar la red, lee el AVISO CRÍTICO** de
+> [`docs/RESTAURACION-PASO-A-PASO.md`](docs/RESTAURACION-PASO-A-PASO.md).
+> Instalar NetworkManager sin un adaptador USB‑Ethernet a mano dejó un pad
+> incomunicado y obligó a reinstalar desde cero. Esta máquina no tiene puerta
+> trasera: la consola congela la pantalla y el sistema no vive en la microSD.
+
+---
+
 ## Trabajo en sitio
 
 Si vas a ir donde está la máquina con un portátil, sigue
@@ -19,8 +42,11 @@ mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
 |---|---|
 | `config-pad/` | Ficheros de configuración del pad (Klipper, Moonraker, KlipperScreen, macros) |
 | `temas/` | Dos temas propios para KlipperScreen, oscuro y claro |
-| `scripts/` | Utilidad para conectar el pad a una red WiFi nueva |
-| `docs/` | Instrucciones de red y gráficas de resonancia |
+| `scripts/` | Aprovisionamiento automático, rescate por USB y utilidades de red |
+| `scripts/provision.sh` | Deja un pad restaurado completamente operativo, sin intervención |
+| `scripts/usb-rescate/` | Rescate por USB: la única vía de entrada si el pad se queda sin red |
+| `scripts/fix-apikey.sh` | Arregla el `Unauthorized` de la pantalla táctil |
+| `docs/` | Instrucciones de red, runbooks y gráficas de resonancia |
 | `Klipper-Flsun-Speeder-Pad-main/` | Copia del repositorio de Guilouz |
 | `speeder_pad_files/` | Ficheros de sistema del pad (sshd, banner, MOTD) |
 
