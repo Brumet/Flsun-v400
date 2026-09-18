@@ -125,6 +125,21 @@ de que funcionó.
 
 Todos estos valores están **medidos en esta máquina**, no son los genéricos.
 
+> **La restauración borra esto.** El 2026-09-15 hubo que restaurar el pad dos
+> veces, y al volver a subir `config-pad/` la máquina quedó con los valores de
+> partida: `max_accel 10000`, `rotation_distance 4.5` e input shaper `mzv 38.6 /
+> ei 45`. Ninguno coincidía con lo medido.
+>
+> Desde entonces `config-pad/printer.cfg` lleva los valores de esta sección, que
+> son los buenos. Se comprueba así:
+>
+> ```bash
+> curl -s http://IP:7125/printer/objects/query?configfile=settings | grep -o '"shaper_type_x":"[^"]*"'
+> ```
+>
+> Lo que **no** se puede reutilizar entre máquinas: `z_offset`, calibración
+> delta y malla de cama. Eso se mide en cada una.
+
 ### Input shaper
 
 Medido con el KUSBA montado en el efector.
