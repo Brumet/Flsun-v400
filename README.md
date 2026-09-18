@@ -68,6 +68,8 @@ mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
 | `scripts/fix-apikey.sh` | Arregla el `Unauthorized` de la pantalla táctil |
 | `scripts/tailscale-setup.sh` | Acceso remoto y SSH desde fuera de la red local |
 | `scripts/soporte-ethernet.sh` | Adaptador USB-Ethernet: al router o directo al PC |
+| `scripts/instalar-camara.sh` | Crowsnest y timelapse, con el arreglo del arranque |
+| `scripts/activar-acelerometro.sh` | Activa el KUSBA sin riesgo de que Klipper no arranque |
 | `docs/` | Instrucciones de red, runbooks y gráficas de resonancia |
 | `Klipper-Flsun-Speeder-Pad-main/` | Copia del repositorio de Guilouz |
 | `speeder_pad_files/` | Ficheros de sistema del pad (sshd, banner, MOTD) |

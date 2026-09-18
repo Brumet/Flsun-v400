@@ -258,7 +258,7 @@ c_ok "servicio moonraker creado y habilitado"
 # ---------------------------------------------------------------------------
 c_head "FASE 5/8 - Configuraciones calibradas"
 
-for f in printer.cfg macros.cfg timelapse.cfg variables.cfg neopixels.cfg; do
+for f in printer.cfg macros.cfg timelapse.cfg variables.cfg neopixels.cfg adxlmcu.cfg; do
     if [ -f "$REPO_DIR/config-pad/$f" ]; then
         cp "$REPO_DIR/config-pad/$f" "$DATA/config/$f"
         chown "$PI_USER:$PI_USER" "$DATA/config/$f"
@@ -423,6 +423,18 @@ if [ -f "$REPO_DIR/scripts/conectar-wifi.sh" ]; then
     c_ok "conectar-wifi.sh instalado en $PI_HOME"
 fi
 
+# Zona horaria: la imagen de fabrica viene en America/New_York, que en verano
+# va una hora por delante de Bogota y en invierno coincide por casualidad.
+# Ese desfase intermitente vuelve loco a cualquiera revisando logs.
+TZ_ACTUAL=$(timedatectl show -p Timezone --value 2>/dev/null)
+if [ "$TZ_ACTUAL" != "America/Bogota" ]; then
+    timedatectl set-timezone America/Bogota 2>>"$LOG" && \
+        c_ok "zona horaria: $TZ_ACTUAL -> America/Bogota" || \
+        c_warn "no se pudo cambiar la zona horaria (estaba en $TZ_ACTUAL)"
+else
+    c_ok "zona horaria ya correcta"
+fi
+
 # ---------------------------------------------------------------------------
 #  FASE 8  -  Verificacion
 # ---------------------------------------------------------------------------
@@ -470,21 +482,33 @@ fi
 
 cat <<'FINEOF'
 
-  QUEDA POR HACER A MANO
-  ──────────────────────
-  1. CALIBRAR lo geometrico, en este orden:
+  QUEDA POR HACER
+  ───────────────
+  1. ACCESO REMOTO (recomendado, y antes que nada):
+        sudo bash scripts/soporte-ethernet.sh
+        sudo bash scripts/tailscale-setup.sh flora
+     Te da SSH desde cualquier sitio y una direccion que no cambia nunca.
+
+  2. CAMARA Y TIMELAPSE (si hay webcam):
+        sudo bash scripts/instalar-camara.sh
+     OJO: printer.cfg ya incluye timelapse.cfg, pero eso solo trae las
+     macros. Sin este script no graba nada.
+
+  3. ACELEROMETRO, solo para medir resonancias:
+        bash scripts/activar-acelerometro.sh on     # con el KUSBA puesto
+        bash scripts/activar-acelerometro.sh off    # al terminar
+     NUNCA dejes el include activo sin la placa: Klipper no arranca.
+
+  4. CALIBRAR lo geometrico, en este orden:
         Z_OFFSET_CALIBRATION -> ENDSTOPS_CALIBRATION
         -> DELTA_CALIBRATION -> BED_LEVELING
      Los valores termicos y de extrusion del README siguen siendo validos.
 
-  2. ZONA HORARIA (si no es Colombia):
-        sudo timedatectl set-timezone America/Bogota
-
-  3. CAMBIAR DE WIFI mas adelante:
+  5. CAMBIAR DE WIFI mas adelante:
         sudo bash /home/pi/conectar-wifi.sh "Red" "clave"
-     NO instales NetworkManager sin un adaptador USB-Ethernet a mano.
+     Para NetworkManager, solo con scripts/migrar-networkmanager.sh
 
-  4. RESCATE: copia scripts/usb-rescate/update.sh a una memoria USB y
+  6. RESCATE: copia scripts/usb-rescate/update.sh a una memoria USB y
      guardala con el pad. Es la unica forma de entrar si se queda sin red.
 
   AVISOS
