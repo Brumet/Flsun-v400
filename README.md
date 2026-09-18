@@ -28,6 +28,26 @@ Guía completa: **[`docs/CLONAR-OTRA-V400.md`](docs/CLONAR-OTRA-V400.md)**
 
 ---
 
+## El taller: tres impresoras, acceso desde cualquier sitio
+
+| Nombre | Máquina | Papel |
+|---|---|---|
+| **flora** | V400 · Speeder Pad | La principal, la de referencia |
+| **v400-2** | V400 | Misma configuración que Flora |
+| **sr-1** | FLSUN SR | Pad propio |
+
+```bash
+sudo bash Flsun-v400/scripts/tailscale-setup.sh flora    # acceso remoto + SSH
+sudo bash Flsun-v400/scripts/soporte-ethernet.sh         # adaptador USB-Ethernet
+```
+
+Con Tailscale los nombres son direcciones reales: `ssh flora` y `http://flora`
+funcionan desde cualquier parte, sin abrir puertos ni depender de la IP local.
+
+Detalles y las cuatro capas de acceso: **[`docs/ACCESO-REMOTO.md`](docs/ACCESO-REMOTO.md)**
+
+---
+
 ## Trabajo en sitio
 
 Si vas a ir donde está la máquina con un portátil, sigue
@@ -46,6 +66,8 @@ mochila, cómo entrar al pad con un cable, y el orden exacto de las cosas.
 | `scripts/provision.sh` | Deja un pad restaurado completamente operativo, sin intervención |
 | `scripts/usb-rescate/` | Rescate por USB: la única vía de entrada si el pad se queda sin red |
 | `scripts/fix-apikey.sh` | Arregla el `Unauthorized` de la pantalla táctil |
+| `scripts/tailscale-setup.sh` | Acceso remoto y SSH desde fuera de la red local |
+| `scripts/soporte-ethernet.sh` | Adaptador USB-Ethernet: al router o directo al PC |
 | `docs/` | Instrucciones de red, runbooks y gráficas de resonancia |
 | `Klipper-Flsun-Speeder-Pad-main/` | Copia del repositorio de Guilouz |
 | `speeder_pad_files/` | Ficheros de sistema del pad (sshd, banner, MOTD) |
